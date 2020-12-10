@@ -8,6 +8,7 @@
 - [ ] Running in IOS
 - [ ] Deploy server to AWS Lambda
 - [ ] Build release with CI
+- [ ] Use web worker
 
 ## Dev
 

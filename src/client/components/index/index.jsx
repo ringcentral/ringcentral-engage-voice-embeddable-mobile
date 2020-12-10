@@ -1,6 +1,4 @@
 import { Component } from 'react'
-import { Button } from 'antd'
-import Link from '../common/link'
 
 export default class App extends Component {
   state = {
@@ -80,31 +78,8 @@ export default class App extends Component {
     return window.rc.authUrlDefaultRc
   }
 
-  loginBtn = () => {
-    return (
-      <div className='pd3x pd3y aligncenter'>
-        <div className='pd2y'>RingCentral engage voice embeddable mobile</div>
-        <Link href={this.getUrl()}>
-          <Button type='primary'>
-            Login
-          </Button>
-        </Link>
-      </div>
-    )
-  }
-
   render () {
-    const logined = !!window.rc.c
     const url = 'https://ringcentral.github.io/engage-voice-embeddable/app.html' + window.rc.appConfigQuery
-    // const cls = classnames(
-    //   'rc-auth-wrap animate',
-    //   {
-    //     'rc-hide-to-side': logined
-    //   }
-    // )
-    if (!logined) {
-      return this.loginBtn()
-    }
     return (
       <div id='app'>
         <iframe

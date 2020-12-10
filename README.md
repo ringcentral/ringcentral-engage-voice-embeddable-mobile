@@ -9,6 +9,7 @@
 - [ ] Deploy server to AWS Lambda
 - [ ] Build release with CI
 - [ ] Use web worker
+- [ ] Deploy to github pages?
 
 ## Dev
 

@@ -1,0 +1,118 @@
+{
+  "name": "ringcentral-engage-voice-embeddable-mobile",
+  "displayName": "RingCentral engage voice embeddable mobile",
+  "version": "1.0.0",
+  "description": "[Experimental] Android/IOS apps based on ringcentral-engage-voice-embeddable and cordova.",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "cordova prepare",
+    "i": "cordova run ios",
+    "a": "cordova run android",
+    "proxy": "ngrok http 6066",
+    "start": "node -r @babel/register -r dotenv/config ./src/server/run-server.js",
+    "deploy": "npm run build-lambda && npm run deploy-lambda",
+    "fix": "standard --fix",
+    "compile": "babel src/server --out-dir dist/server",
+    "c": "webpack serve --progress --config build/webpack.config.babel.js",
+    "build": "npm run clean && npm run compile",
+    "view": "node build/view.js",
+    "clean": "node build/clean.js",
+    "build-lambda": "npm run clean && node cmds/build && npm run view",
+    "deploy-lambda": "node cmds/deploy",
+    "watch": "cd deploy && ../node_modules/.bin/sls logs -f app -t",
+    "lint": "standard"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Drake Zhao <drake.zhao@ringcentral.com> (https://github.com/zxdong262)",
+  "license": "MIT",
+  "devDependencies": {
+    "@ant-design/icons": "^4.3.0",
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@babel/register": "^7.12.1",
+    "antd": "^4.9.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "camelcase": "^6.2.0",
+    "classnames": "^2.2.6",
+    "cordova-android": "9.0.0",
+    "cordova-ios": "^6.1.1",
+    "cordova-plugin-android-permissions": "^1.1.2",
+    "cordova-plugin-audioinput": "^1.0.2",
+    "cordova-plugin-file": "6.0.2",
+    "cordova-plugin-inappbrowser": "^4.0.0",
+    "cordova-plugin-media": "^5.0.3",
+    "cordova-plugin-media-capture": "3.0.3",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "css-loader": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "dynamodb-local": "0.0.31",
+    "file-loader": "^6.2.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "mini-css-extract-plugin": "^1.3.2",
+    "ngrok": "^3.3.0",
+    "null-loader": "^4.0.1",
+    "replace-in-file": "^6.1.0",
+    "serverless": "^2.15.0",
+    "shelljs": "^0.8.4",
+    "standard": "^16.0.3",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.1",
+    "terser-webpack-plugin": "^5.0.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "json-deep-copy": "^1.1.5",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0",
+    "serverless-http": "^2.6.0"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-audioinput": {},
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-media": {}
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "cordova"
+    ],
+    "ignore": [
+      "*-compiled.js",
+      "/dist/"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ringcentral/ringcentral-engage-voice-embeddable-mobile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ringcentral/ringcentral-engage-voice-embeddable-mobile/issues"
+  },
+  "homepage": "https://github.com/ringcentral/ringcentral-engage-voice-embeddable-mobile#readme"
+}

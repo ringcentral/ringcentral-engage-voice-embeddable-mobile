@@ -9,7 +9,7 @@
 - [ ] Deploy server to AWS Lambda
 - [ ] Build release with CI
 - [ ] Use web worker
-- [ ] Deploy to github pages?
+- [x] Deploy to github pages?
 
 ## Dev
 
@@ -46,6 +46,19 @@ npm run prepare
 # run Android app, make sure you have simulator or real android device ready
 npm run a
 
+```
+
+## Build for Github pages
+
+```bash
+
+# build for github pages, remember to push to github
+npm run gh
+
+# build for android
+npm run build-android
+
+# check platforms/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ## License

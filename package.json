@@ -25,7 +25,8 @@
     "gh-clean": "rm -rf docs",
     "gh-after": "node build/gh-clean",
     "gh": "npm run gh-clean && npm run gh-build && npm run gh-after",
-    "ghs": "node -r @babel/register -r dotenv/config ./build/server.js"
+    "ghs": "node -r @babel/register -r dotenv/config ./build/server.js",
+    "build-android": "cordova build android"
   },
   "keywords": [
     "ecosystem:cordova"

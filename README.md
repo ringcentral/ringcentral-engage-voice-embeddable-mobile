@@ -2,6 +2,10 @@
 
 **Experimental** Android/IOS apps based on ringcentral-engage-voice-embeddable and cordova
 
+## Download apps
+
+[https://github.com/ringcentral/ringcentral-engage-voice-embeddable-mobile/releases](https://github.com/ringcentral/ringcentral-engage-voice-embeddable-mobile/releases)
+
 ## todos
 
 - [x] Running in Android

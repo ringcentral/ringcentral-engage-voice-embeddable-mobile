@@ -105,7 +105,7 @@ dist
 
 # cordova
 # Cordova Global
-plugins/
+/plugins/
 
 # iOS Platform
 platforms/ios/build/

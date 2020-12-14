@@ -46,7 +46,8 @@ const config = {
   entry: {
     app: resolve(__dirname, '../src/client/index.js'),
     config: resolve(__dirname, '../src/app/config.xml'),
-    index: resolve(__dirname, '../src/server/views/index.pug')
+    index: resolve(__dirname, '../src/server/views/index.pug'),
+    redirect: resolve(__dirname, '../src/server/views/redirect.pug')
   },
   externals: {
     react: 'React',

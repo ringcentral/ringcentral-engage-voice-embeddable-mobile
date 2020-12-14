@@ -1,3 +1,7 @@
+/**
+ * webpack config for github pages build
+ */
+
 require('dotenv').config()
 const { identity } = require('lodash')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -5,8 +9,6 @@ const { resolve } = require('path')
 const { LoaderOptionsPlugin } = require('webpack')
 const { env } = process
 const pack = require('../package.json')
-const devPort = env.devPort || 6066
-const host = env.host || 'localhost'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const camel = require('camelcase')
@@ -14,6 +16,10 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const extractTextPlugin1 = new MiniCssExtractPlugin({
   filename: 'css/[name].styles.bundle.css'
 })
+const {
+  pugIndex,
+  pugRedirect
+} = require('./pug')
 const stylusSettingPlugin = new LoaderOptionsPlugin({
   test: /\.styl$/,
   stylus: {
@@ -37,10 +43,11 @@ const dict = {
   home
 }
 const config = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     app: './src/client/index.js',
-    config: './src/app/config.xml'
+    config: './src/app/config.xml',
+    index: './src/views/index.pug'
   },
   externals: {
     react: 'React',
@@ -50,7 +57,7 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.json']
   },
   output: {
-    path: resolve(__dirname, '../deploy/dist/static'),
+    path: resolve(__dirname, '../docs'),
     filename: 'js/[name].bundle.js',
     publicPath: '/',
     chunkFilename: 'js/[name].bundle.js'
@@ -124,36 +131,53 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /index\.pug$/,
+        use: [
+          'file-loader?name=index.html',
+          'concat-loader',
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              attributes: false
+            }
+          },
+          pug
+        ]
+      },
+      {
+        test: /redirect\.pug$/,
+        use: [
+          'file-loader?name=redirect.html',
+          'concat-loader',
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              attributes: false
+            }
+          },
+          pugRedirect
+        ]
       }
     ]
   },
   devtool: 'source-map',
   optimization: {
-    minimize: true
-  },
-  devServer: {
-    host,
-    disableHostCheck: true,
-    contentBase: '../deploy/dist/static',
-    port: devPort,
-    overlay: {
-      warnings: true,
-      errors: true
-    },
-    hot: true,
-    proxy: {
-      '/': {
-        target: `http://${env.RINGCENTRAL_HOST}:${env.RINGCENTRAL_PORT}`,
-        bypass: function (req, res, proxyOptions) {
-          if (req.path.includes('.bundle.')) {
-            return req.path
-          }
-        }
-      }
-    }
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin()
+    ]
   },
   plugins: [
-    extractTextPlugin1
+    extractTextPlugin1,
+    new LodashModuleReplacementPlugin({
+      collections: true,
+      paths: true
+    }),
+    stylusSettingPlugin
   ].filter(identity)
 }
 

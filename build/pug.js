@@ -1,11 +1,10 @@
 
-const copy = require('json-deep-copy')
+const copy = require('json-deep-copy').default
 const {
   RINGCENTRAL_APP_SERVER_GH,
   RINGCENTRAL_CLIENT_ID,
   RINGCENTRAL_CLIENT_SECRET,
-  RINGCENTRAL_SERVER,
-  APP_HOME
+  RINGCENTRAL_SERVER
 } = process.env
 
 const { resolve } = require('path')
@@ -38,7 +37,7 @@ exports.pugIndex = {
 }
 
 const base = {
-  server: (RINGCENTRAL_APP_SERVER_GH + APP_HOME).replace(/\/$/, '')
+  server: RINGCENTRAL_APP_SERVER_GH
 }
 exports.pugRedirect = {
   loader: 'pug-html-loader',

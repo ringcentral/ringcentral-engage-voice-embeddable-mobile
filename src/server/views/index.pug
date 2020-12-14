@@ -8,7 +8,7 @@ html
     meta(name='referrer', content='always')
     title #{title}
     link(href='//developer.ringcentral.com/assets/images/favicon.ico?v=20181214-0738', type='image/vnd.microsoft.icon', rel='shortcut icon')
-    link(rel='stylesheet', href=cdn + '/css/index.styles.bundle.css?' + version)
+    link(rel='stylesheet', href=cdn + '/css/app.styles.bundle.css?' + version)
   body
     #bg
     #container.hide
@@ -16,7 +16,6 @@ html
     script.
       window.rc = !{JSON.stringify(_global)}
     script(src=cdn + '/android/platform_www/cordova.js?' + version)
-    // script(src=cdn + '/android/platform_www/cordova_plugins.js?' + version)
     script(crossorigin, src='//unpkg.com/react@16/umd/react.production.min.js')
     script(crossorigin, src='//unpkg.com/react-dom@16/umd/react-dom.production.min.js')
     script.

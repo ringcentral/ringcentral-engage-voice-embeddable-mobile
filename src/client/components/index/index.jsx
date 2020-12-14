@@ -9,15 +9,21 @@ export default class App extends Component {
 
   componentDidMount () {
     this.initEvent()
-
     this.requirePermissions()
   }
 
+  getCodeFromUrl = () => {
+    const reg = /c=([\w\d_\-]+)/
+    const arr = window.location.search.match(reg)
+    return arr ? arr[1] : ''
+  }
+
   login = () => {
-    if (window.rc.c) {
+    const c = this.getCodeFromUrl()
+    if (c) {
       document.querySelector('#rc-widget-adapter-frame').contentWindow.postMessage({
         type: 'rc-ev-authorization-code',
-        callbackUri: `${window.rc.callbackUri}?code=${window.rc.c}`
+        callbackUri: `${window.rc.callbackUri}?code=${c}`
       }, '*')
     }
   }

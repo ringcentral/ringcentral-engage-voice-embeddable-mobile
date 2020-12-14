@@ -29,19 +29,7 @@ data._global = copy(data)
 
 export default (view) => {
   return (req, res) => {
-    // const list = 'https://*.hubspot.com;'
-    // if (view === 'index') {
-    //   res.set(
-    //     'Content-Security-Policy',
-    //     `frame-ancestors ${list}`
-    //   )
-    // }
     const dd = copy(data)
-    const { c = '' } = req.query
-    dd.appConfigQuery = dd.appConfigQuery + `&authorizationCode=${c}`
-    dd._global.appConfigQuery = dd.appConfigQuery
-    dd.c = c
-    dd._global.c = c
     res.render(view, dd)
   }
 }

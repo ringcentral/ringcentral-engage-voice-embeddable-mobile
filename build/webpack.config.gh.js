@@ -4,18 +4,17 @@
 
 require('dotenv').config()
 const { identity } = require('lodash')
-const TerserPlugin = require('terser-webpack-plugin')
 const { resolve } = require('path')
 const { LoaderOptionsPlugin } = require('webpack')
 const { env } = process
 const pack = require('../package.json')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const camel = require('camelcase')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const extractTextPlugin1 = new MiniCssExtractPlugin({
   filename: 'css/[name].styles.bundle.css'
 })
+const cp = require('./copy')
 const {
   pugIndex,
   pugRedirect
@@ -28,12 +27,12 @@ const stylusSettingPlugin = new LoaderOptionsPlugin({
   'resolve url': false
 })
 const {
-  RINGCENTRAL_APP_SERVER,
+  RINGCENTRAL_APP_SERVER_GH,
   APP_HOME,
   NODE_ENV
 } = env
 const isProd = NODE_ENV === 'production'
-const home = (RINGCENTRAL_APP_SERVER + APP_HOME).replace(/\/$/, '')
+const home = (RINGCENTRAL_APP_SERVER_GH + APP_HOME).replace(/\/$/, '')
 const dict = {
   appName: camel(pack.name),
   description: pack.description,
@@ -45,9 +44,9 @@ const dict = {
 const config = {
   mode: 'production',
   entry: {
-    app: './src/client/index.js',
-    config: './src/app/config.xml',
-    index: './src/views/index.pug'
+    app: resolve(__dirname, '../src/client/index.js'),
+    config: resolve(__dirname, '../src/app/config.xml'),
+    index: resolve(__dirname, '../src/server/views/index.pug')
   },
   externals: {
     react: 'React',
@@ -144,7 +143,7 @@ const config = {
               attributes: false
             }
           },
-          pug
+          pugIndex
         ]
       },
       {
@@ -173,34 +172,9 @@ const config = {
   },
   plugins: [
     extractTextPlugin1,
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      paths: true
-    }),
-    stylusSettingPlugin
+    stylusSettingPlugin,
+    cp
   ].filter(identity)
-}
-
-if (isProd) {
-  config.optimization = {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin(),
-      new CssMinimizerPlugin()
-    ]
-  }
-  config.mode = 'production'
-  delete config.watch
-  delete config.devtool
-  delete config.devServer
-  config.plugins = [
-    extractTextPlugin1,
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      paths: true
-    }),
-    stylusSettingPlugin
-  ]
 }
 
 module.exports = config

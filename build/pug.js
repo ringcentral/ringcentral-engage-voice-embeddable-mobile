@@ -26,18 +26,24 @@ const data = {
   appConfigQuery: `?appVersion=${pack.version}&userAgent=${pack.name}_extension%2F${pack.version}&disableActiveCallControl=false&clientId=${RINGCENTRAL_CLIENT_ID}&clientSecret=${RINGCENTRAL_CLIENT_SECRET}&appServer=${encodeURIComponent(RINGCENTRAL_SERVER)}&redirectUri=${callbackUri}&disableLoginPopup=1`
 }
 
-exports.pugIndex = {
-  loader: 'pug-html-loader',
-  options: {
-    data: {
-      ...data,
-      _global: copy(data)
+function create (view) {
+  const d = copy(data)
+  d.view = view
+  d._global = copy(d)
+  return {
+    loader: 'pug-html-loader',
+    options: {
+      data: d
     }
   }
 }
 
+exports.pugIndex = create('index')
+exports.pugIndexIOS = create('index-ios')
+
 const base = {
-  server: RINGCENTRAL_APP_SERVER_GH
+  server: RINGCENTRAL_APP_SERVER_GH,
+  serverIOS: RINGCENTRAL_APP_SERVER_GH.replace('index', 'index-ios')
 }
 exports.pugRedirect = {
   loader: 'pug-html-loader',

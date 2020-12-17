@@ -81,7 +81,7 @@ export default class App extends Component {
   }
 
   getUrl = () => {
-    return window.rc.authUrlDefaultRc
+    return window.rc.authUrlDefaultRc.replace(window.rc.defaultState, window.rc.view)
   }
 
   render () {

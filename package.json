@@ -6,6 +6,8 @@
   "main": "index.js",
   "scripts": {
     "prepare": "cordova prepare",
+    "icon": "cordova-icon --config=config.xml --icon=src/app/icon.png",
+    "splash": "cordova-splash --config=config.xml --splash=src/app/splash.png",
     "i": "cordova run ios",
     "a": "cordova run android",
     "proxy": "ngrok http 6066",
@@ -14,6 +16,7 @@
     "fix": "standard --fix",
     "compile": "babel src/server --out-dir dist/server",
     "c": "webpack serve --progress --config build/webpack.config.babel.js",
+    "c-ios": "IS_IOS=1 webpack serve --progress --config build/webpack.config.babel.js",
     "build": "npm run clean && npm run compile",
     "view": "node build/view.js",
     "clean": "node build/clean.js",

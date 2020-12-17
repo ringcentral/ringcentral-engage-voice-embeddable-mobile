@@ -7,6 +7,7 @@ const {
 } = process.env
 
 export default async (req, res) => {
-  const { code } = req.query
-  res.redirect(APP_HOME + `?c=${code}`)
+  const { code, state } = req.query
+  const r = state.includes('ios') ? '/ios' : APP_HOME
+  res.redirect(r + `?c=${code}`)
 }

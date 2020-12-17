@@ -4,6 +4,7 @@
 
 const { getOptions } = require('loader-utils')
 const { writeFileSync } = require('fs')
+const { exec } = require('shelljs')
 module.exports = function (src) {
   const opts = getOptions(this)
   const res = src.replace(/\{[\w\d]+\}/g, (s) => {
@@ -16,5 +17,6 @@ module.exports = function (src) {
     }
   })
   writeFileSync(opts.file, res)
+  exec('npm run icon && npm run splash')
   return ''
 }

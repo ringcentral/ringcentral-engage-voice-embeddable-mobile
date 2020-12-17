@@ -30,6 +30,8 @@ data._global = copy(data)
 export default (view) => {
   return (req, res) => {
     const dd = copy(data)
+    dd.view = view
+    dd._global.view = view
     res.render(view, dd)
   }
 }

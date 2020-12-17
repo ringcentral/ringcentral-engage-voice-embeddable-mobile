@@ -17,6 +17,7 @@ const extractTextPlugin1 = new MiniCssExtractPlugin({
 const cp = require('./copy')
 const {
   pugIndex,
+  pugIndexIOS,
   pugRedirect
 } = require('./pug')
 const stylusSettingPlugin = new LoaderOptionsPlugin({
@@ -27,12 +28,9 @@ const stylusSettingPlugin = new LoaderOptionsPlugin({
   'resolve url': false
 })
 const {
-  RINGCENTRAL_APP_SERVER_GH,
-  APP_HOME,
-  NODE_ENV
+  RINGCENTRAL_APP_SERVER_GH
 } = env
-const isProd = NODE_ENV === 'production'
-const home = (RINGCENTRAL_APP_SERVER_GH + APP_HOME).replace(/\/$/, '')
+const home = RINGCENTRAL_APP_SERVER_GH
 const dict = {
   appName: camel(pack.name),
   description: pack.description,
@@ -47,6 +45,7 @@ const config = {
     app: resolve(__dirname, '../src/client/index.js'),
     config: resolve(__dirname, '../src/app/config.xml'),
     index: resolve(__dirname, '../src/server/views/index.pug'),
+    'index-ios': resolve(__dirname, '../src/server/views/index-ios.pug'),
     redirect: resolve(__dirname, '../src/server/views/redirect.pug')
   },
   externals: {
@@ -145,6 +144,21 @@ const config = {
             }
           },
           pugIndex
+        ]
+      },
+      {
+        test: /index-ios\.pug$/,
+        use: [
+          'file-loader?name=index-ios.html',
+          'concat-loader',
+          'extract-loader',
+          {
+            loader: 'html-loader',
+            options: {
+              attributes: false
+            }
+          },
+          pugIndexIOS
         ]
       },
       {

@@ -24,10 +24,12 @@ const stylusSettingPlugin = new LoaderOptionsPlugin({
 const {
   RINGCENTRAL_APP_SERVER,
   APP_HOME,
-  NODE_ENV
+  NODE_ENV,
+  IS_IOS
 } = env
 const isProd = NODE_ENV === 'production'
-const home = (RINGCENTRAL_APP_SERVER + APP_HOME).replace(/\/$/, '')
+const fix = IS_IOS ? '/ios' : APP_HOME
+const home = (RINGCENTRAL_APP_SERVER + fix).replace(/\/$/, '')
 const dict = {
   appName: camel(pack.name),
   description: pack.description,

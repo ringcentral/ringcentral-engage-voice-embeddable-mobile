@@ -1,4 +1,4 @@
-# ringcentral-engage-voice-embeddable-mobile
+# RingCentral Engage voice embeddable mobile
 
 **Experimental** Android/IOS apps based on ringcentral-engage-voice-embeddable and cordova
 
@@ -9,17 +9,21 @@
 ## todos
 
 - [x] Running in Android
-- [ ] Running in IOS
+- [ ] Running in IOS`[WIP]`
 - [ ] Deploy server to AWS Lambda
 - [ ] Build release with CI
 - [ ] Use web worker
-- [x] Deploy to github pages?
+- [x] Deploy to github pages
 
 ## Dev
 
 ### Prerequisites
 
-- Follow the cordova guide to prepare for Android development: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+- Android: Follow the cordova guide to prepare for Android development: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+- IOS: Follow the cordova guide to prepare for ISO development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
+- ImageMagick installed (Mac: `brew install imagemagick`, Debian/Ubuntu: `sudo apt-get install imagemagick`, Windows: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
+- cordova-splash: `npm install cordova-splash -g`
+- cordova-icon: `npm install cordova-icon -g`
 
 ```bash
 # clone project
@@ -41,7 +45,7 @@ cp sample.env .env
 # start server
 npm start
 
-# start client
+# start client for Android, for ISO run npm run `c-ios`
 npm run c
 
 # prepare cordova
@@ -63,6 +67,11 @@ npm run gh
 npm run build-android
 
 # check platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+
+# build for IOS
+npm run build-ios
+
 ```
 
 ## License

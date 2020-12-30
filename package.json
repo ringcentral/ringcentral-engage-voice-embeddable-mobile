@@ -30,6 +30,7 @@
     "gh": "npm run gh-clean && GH=true npm run download && npm run gh-build && npm run gh-after",
     "ghs": "node -r @babel/register -r dotenv/config ./build/server.js",
     "build-android": "cordova build android",
+    "build-ios": "cordova build ios",
     "download": "node build/download-adapter.js"
   },
   "keywords": [

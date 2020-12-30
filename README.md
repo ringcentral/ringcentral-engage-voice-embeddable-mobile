@@ -70,7 +70,8 @@ npm run build-android
 
 # check platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-# No IOS app published
+# Build with online resources for IOS App
+npm run build-ios
 
 ```
 

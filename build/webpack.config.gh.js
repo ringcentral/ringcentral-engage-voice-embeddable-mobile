@@ -42,10 +42,10 @@ const dict = {
 const config = {
   mode: 'production',
   entry: {
-    app: resolve(__dirname, '../src/client/index.js'),
+    app: resolve(__dirname, '../src/client/app.js'),
+    work: resolve(__dirname, '../src/client/work.js'),
     config: resolve(__dirname, '../src/app/config.xml'),
     index: resolve(__dirname, '../src/server/views/index.pug'),
-    'index-ios': resolve(__dirname, '../src/server/views/index-ios.pug'),
     redirect: resolve(__dirname, '../src/server/views/redirect.pug')
   },
   externals: {
@@ -144,21 +144,6 @@ const config = {
             }
           },
           pugIndex
-        ]
-      },
-      {
-        test: /index-ios\.pug$/,
-        use: [
-          'file-loader?name=index-ios.html',
-          'concat-loader',
-          'extract-loader',
-          {
-            loader: 'html-loader',
-            options: {
-              attributes: false
-            }
-          },
-          pugIndexIOS
         ]
       },
       {

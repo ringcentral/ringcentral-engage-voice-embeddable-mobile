@@ -104,20 +104,32 @@ class App extends external_React_namespaceObject.Component {
       loginning: false
     });
 
-    defineProperty_default()(this, "getCodeFromUrl", () => {
-      const reg = /c=([\w\d_\-]+)/;
-      const arr = window.location.search.match(reg);
-      return arr ? arr[1] : '';
+    defineProperty_default()(this, "isIOS", window.rc.isIOS);
+
+    defineProperty_default()(this, "getCode", () => {
+      const key = 'rc-authcode';
+      const c = window.localStorage.getItem(key);
+
+      if (c) {
+        window.localStorage.setItem(key, '');
+        return c;
+      } else {
+        return '';
+      }
+    });
+
+    defineProperty_default()(this, "postMessage", data => {
+      document.querySelector('#rc-widget-adapter-frame').contentWindow.postMessage(data, '*');
     });
 
     defineProperty_default()(this, "login", () => {
-      const c = this.getCodeFromUrl();
+      const c = this.getCode();
 
       if (c) {
-        document.querySelector('#rc-widget-adapter-frame').contentWindow.postMessage({
+        this.postMessage({
           type: 'rc-ev-authorization-code',
           callbackUri: `${window.rc.callbackUri}?code=${c}`
-        }, '*');
+        });
       }
     });
 
@@ -127,7 +139,9 @@ class App extends external_React_namespaceObject.Component {
           permissions
         } = cordova.plugins;
         const list = [permissions.CAPTURE_AUDIO_OUTPUT, permissions.RECORD_AUDIO];
-        permissions.hasPermission(list, status => {
+        permissions.checkPermission(list, status => {
+          console.log('permission list', status);
+
           if (!status.hasPermission) {
             permissions.requestPermissions(list, status => {
               if (!status.hasPermission) {
@@ -166,6 +180,9 @@ class App extends external_React_namespaceObject.Component {
 
           case 'rc-ev-init':
             this.login();
+            this.postMessage({
+              type: 'rc-init-rtc'
+            });
             break;
 
           default:
@@ -175,17 +192,21 @@ class App extends external_React_namespaceObject.Component {
     });
 
     defineProperty_default()(this, "getUrl", () => {
-      return window.rc.authUrlDefaultRc;
+      return window.rc.authUrlDefaultRc.replace(window.rc.defaultState, window.rc.view);
     });
   }
 
   componentDidMount() {
+    console.log('isios', this.isIOS);
     this.initEvent();
-    this.requirePermissions();
+
+    if (!this.isIOS) {
+      this.requirePermissions();
+    }
   }
 
   render() {
-    const url = 'https://ringcentral.github.io/engage-voice-embeddable/app.html' + window.rc.appConfigQuery;
+    const url = this.isIOS ? window.rc.server + '/embeddable/app.html' + window.rc.appConfigQuery : 'https://ringcentral.github.io/engage-voice-embeddable/app.html' + window.rc.appConfigQuery;
     return /*#__PURE__*/React.createElement("div", {
       id: "app"
     }, /*#__PURE__*/React.createElement("iframe", {
@@ -197,7 +218,7 @@ class App extends external_React_namespaceObject.Component {
   }
 
 }
-;// CONCATENATED MODULE: ./src/client/index.js
+;// CONCATENATED MODULE: ./src/client/app.js
 /**
  * entry file for install page
  */

@@ -13,6 +13,8 @@ html
     script.
       window.rc = !{JSON.stringify(_global)}
     script.
-      var server = window.location.search.indexOf('index-ios') ? window.rc.server : window.rc.serverIOS
-      window.location.href = window.rc.server + window.location.search.replace('code=', 'c=')
+      window.localStorage.setItem('rc-authcode', window.rc.code);
+      setTimeout(function () {
+        window.location.href = window.rc.server
+      }, 100)
 

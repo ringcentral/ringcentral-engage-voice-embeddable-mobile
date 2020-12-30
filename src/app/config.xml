@@ -25,6 +25,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <platform name="android">
+        <icon src="src/app/icon.png" />
         <!-- <plugin name="cordova-plugin-media-capture" spec="*">
             <variable name="CAMERA_USAGE_DESCRIPTION" value="To take videos"/>
             <variable name="MICROPHONE_USAGE_DESCRIPTION" value="To record voice while taking videos"/>
@@ -40,5 +41,14 @@
             <uses-permission android:name="android.permission.WAKE_LOCK" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
         </edit-config> -->
+    </platform>
+    <platform name="ios">
+        <plugin name="cordova-plugin-audioinput" spec="*"/>
+        <plugin name="Capture" value="CDVCapture" />
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+          <array>
+            <string>audio</string>
+          </array>
+        </config-file>
     </platform>
 </widget>

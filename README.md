@@ -1,6 +1,6 @@
 # RingCentral Engage voice embeddable mobile
 
-**Experimental** Android/IOS apps based on ringcentral-engage-voice-embeddable and cordova
+**Experimental** Android/IOS apps based on [ringcentral-engage-voice-embeddable](https://github.com/ringcentral/engage-voice-embeddable) and cordova
 
 ## Download apps
 
@@ -9,7 +9,7 @@
 ## todos
 
 - [x] Running in Android
-- [ ] Running in IOS`[WIP]`
+- [x] Running in IOS
 - [ ] Deploy server to AWS Lambda
 - [ ] Build release with CI
 - [ ] Use web worker
@@ -45,7 +45,7 @@ cp sample.env .env
 # start server
 npm start
 
-# start client for Android, for ISO run npm run `c-ios`
+# start client
 npm run c
 
 # prepare cordova
@@ -54,6 +54,8 @@ npm run prepare
 # run Android app, make sure you have simulator or real android device ready
 npm run a
 
+# run IOS app, make sure you have real IOS device and paid developer ID ready
+npm run i
 ```
 
 ## Build for Github pages
@@ -68,9 +70,7 @@ npm run build-android
 
 # check platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-
-# build for IOS
-npm run build-ios
+# No IOS app published
 
 ```
 

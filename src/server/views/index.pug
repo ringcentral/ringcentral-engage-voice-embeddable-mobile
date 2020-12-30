@@ -15,7 +15,30 @@ html
     #content-loading(style='text-align:center;padding:30px;font-size:24px') loading...
     script.
       window.rc = !{JSON.stringify(_global)}
-    script(src=cdn + '/android/platform_www/cordova.js?' + version)
+      window.rc.isIOS = (function () {
+        const iosQuirkPresent = function () {
+          const audio = new window.Audio()
+          audio.volume = 0.5
+          return audio.volume === 1 // volume cannot be changed from "1" on iOS 12 and below
+        }
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+        const isAppleDevice = navigator.userAgent.includes('Macintosh')
+        const isTouchScreen = navigator.maxTouchPoints >= 1 // true for iOS 13 (and hopefully beyond)
+
+        return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()))
+      })()
+      if (!window.rc.isIOS) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = false;
+        const prefix = window.rc.isIOS ? 'ios' : 'android'
+        script.src = `/${prefix}/platform_www/cordova.js`
+        document.body.appendChild(script)
+      } else {
+        window.location.href = window.rc.server + '/embeddable/app.html' + window.rc.appConfigQuery
+      }
+      window.localStorage.setItem('rc-data-ref', JSON.stringify(window.rc))
     script(crossorigin, src='//unpkg.com/react@16/umd/react.production.min.js')
     script(crossorigin, src='//unpkg.com/react-dom@16/umd/react-dom.production.min.js')
     script.

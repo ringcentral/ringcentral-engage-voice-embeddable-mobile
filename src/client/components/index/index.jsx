@@ -7,24 +7,38 @@ export default class App extends Component {
     loginning: false
   }
 
+  isIOS = window.rc.isIOS
+
   componentDidMount () {
+    console.log('isios', this.isIOS)
     this.initEvent()
-    this.requirePermissions()
+    if (!this.isIOS) {
+      this.requirePermissions()
+    }
   }
 
-  getCodeFromUrl = () => {
-    const reg = /c=([\w\d_\-]+)/
-    const arr = window.location.search.match(reg)
-    return arr ? arr[1] : ''
+  getCode = () => {
+    const key = 'rc-authcode'
+    const c = window.localStorage.getItem(key)
+    if (c) {
+      window.localStorage.setItem(key, '')
+      return c
+    } else {
+      return ''
+    }
+  }
+
+  postMessage = (data) => {
+    document.querySelector('#rc-widget-adapter-frame').contentWindow.postMessage(data, '*')
   }
 
   login = () => {
-    const c = this.getCodeFromUrl()
+    const c = this.getCode()
     if (c) {
-      document.querySelector('#rc-widget-adapter-frame').contentWindow.postMessage({
+      this.postMessage({
         type: 'rc-ev-authorization-code',
         callbackUri: `${window.rc.callbackUri}?code=${c}`
-      }, '*')
+      })
     }
   }
 
@@ -35,7 +49,8 @@ export default class App extends Component {
         permissions.CAPTURE_AUDIO_OUTPUT,
         permissions.RECORD_AUDIO
       ]
-      permissions.hasPermission(list, (status) => {
+      permissions.checkPermission(list, (status) => {
+        console.log('permission list', status)
         if (!status.hasPermission) {
           permissions.requestPermissions(
             list,
@@ -73,6 +88,9 @@ export default class App extends Component {
           break
         case 'rc-ev-init':
           this.login()
+          this.postMessage({
+            type: 'rc-init-rtc'
+          })
           break
         default:
           break
@@ -85,7 +103,9 @@ export default class App extends Component {
   }
 
   render () {
-    const url = 'https://ringcentral.github.io/engage-voice-embeddable/app.html' + window.rc.appConfigQuery
+    const url = this.isIOS
+      ? window.rc.server + '/embeddable/app.html' + window.rc.appConfigQuery
+      : 'https://ringcentral.github.io/engage-voice-embeddable/app.html' + window.rc.appConfigQuery
     return (
       <div id='app'>
         <iframe

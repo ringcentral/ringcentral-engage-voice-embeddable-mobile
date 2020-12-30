@@ -1,11 +1,19 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
+      "id": "cordova-audio-permissions-plugin.audioPermissions",
+      "file": "plugins/cordova-audio-permissions-plugin/www/AudioPermissions.js",
+      "pluginId": "cordova-audio-permissions-plugin",
       "clobbers": [
-        "cordova.InAppBrowser.open"
+        "window.plugins.audioPermissions"
+      ]
+    },
+    {
+      "id": "cordova-plugin-android-permissions.Permissions",
+      "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
+      "pluginId": "cordova-plugin-android-permissions",
+      "clobbers": [
+        "cordova.plugins.permissions"
       ]
     },
     {
@@ -190,6 +198,36 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
+    },
+    {
+      "id": "cordova-plugin-indexeddb-async.IndexedDBShim",
+      "file": "plugins/cordova-plugin-indexeddb-async/www/indexeddbshim.min.js",
+      "pluginId": "cordova-plugin-indexeddb-async",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
+      ]
+    },
+    {
       "id": "cordova-plugin-media-capture.CaptureAudioOptions",
       "file": "plugins/cordova-plugin-media-capture/www/CaptureAudioOptions.js",
       "pluginId": "cordova-plugin-media-capture",
@@ -256,39 +294,19 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-media-capture/www/android/init.js",
       "pluginId": "cordova-plugin-media-capture",
       "runs": true
-    },
-    {
-      "id": "cordova-plugin-android-permissions.Permissions",
-      "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
-      "pluginId": "cordova-plugin-android-permissions",
-      "clobbers": [
-        "cordova.plugins.permissions"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
     }
   ];
   module.exports.metadata = {
-    "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-inappbrowser": "4.1.0",
+    "cordova-audio-permissions-plugin": "0.0.1",
+    "cordova-plugin-android-permissions": "1.1.2",
     "cordova-plugin-audioinput": "1.0.2",
     "cordova-plugin-file": "6.0.2",
+    "cordova-plugin-inappbrowser": "4.1.0",
+    "cordova-plugin-indexeddb-async": "0.0.1",
+    "cordova-plugin-ios-camera-permissions": "1.2.0",
+    "cordova-plugin-iosrtc": "6.0.16",
+    "cordova-plugin-media": "5.0.3",
     "cordova-plugin-media-capture": "3.0.3",
-    "cordova-plugin-android-permissions": "1.1.2",
-    "cordova-plugin-media": "5.0.3"
+    "cordova-plugin-whitelist": "1.3.4"
   };
 });

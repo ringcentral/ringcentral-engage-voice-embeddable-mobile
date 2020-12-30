@@ -22,6 +22,5 @@ app.set('view engine', 'pug')
 app.get('/test', (req, res) => res.send('server running'))
 app.get('/rc-oauth', rcAuth)
 app.get(APP_HOME, viewIndex('index'))
-app.get('/ios'.replace('//', '/'), viewIndex('index-ios'))
 
 export default app

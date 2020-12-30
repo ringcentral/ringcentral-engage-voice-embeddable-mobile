@@ -30,8 +30,8 @@ data._global = copy(data)
 export default (view) => {
   return (req, res) => {
     const dd = copy(data)
-    dd.view = view
-    dd._global.view = view
+    dd.isAndroid = req.get('user-agent').includes('Android')
+    dd._global.isAndroid = dd.isAndroid
     res.render(view, dd)
   }
 }

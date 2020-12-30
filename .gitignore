@@ -217,3 +217,4 @@ $RECYCLE.BIN/
 /platforms/
 /deploy/embeddable/
 /config.xml
+/*.zip

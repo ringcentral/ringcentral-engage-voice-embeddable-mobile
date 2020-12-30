@@ -4,15 +4,39 @@ const from1 = resolve(
   __dirname,
   '../platforms/android/platform_www'
 )
+const from2 = resolve(
+  __dirname,
+  '../platforms/ios/platform_www'
+)
 const to1 = resolve(
   __dirname,
   '../docs/android/'
+)
+const to2 = resolve(
+  __dirname,
+  '../docs/ios/'
+)
+const from3 = resolve(
+  __dirname,
+  '../deploy/embeddable'
+)
+const to3 = resolve(
+  __dirname,
+  '../docs/embeddable'
 )
 
 const copy = new CopyWebpackPlugin({
   patterns: [{
     from: from1,
     to: to1,
+    force: true
+  }, {
+    from: from2,
+    to: to2,
+    force: true
+  }, {
+    from: from3,
+    to: to3,
     force: true
   }]
 })

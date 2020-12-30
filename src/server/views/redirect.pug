@@ -11,7 +11,9 @@ html
   body
     #content-loading(style='text-align:center;padding:30px;font-size:24px') loading...
     script.
-      window.rc = !{JSON.stringify(_global)}
+      window.rc = !{JSON.stringify(_global)};
+      var arr = window.location.href.match(/code=([\w\d-_]+)/);
+      window.rc.code = arr ? arr[1] : '';
     script.
       window.localStorage.setItem('rc-authcode', window.rc.code);
       setTimeout(function () {

@@ -42,8 +42,7 @@ exports.pugIndex = create('index')
 exports.pugIndexIOS = create('index-ios')
 
 const base = {
-  server: RINGCENTRAL_APP_SERVER_GH,
-  serverIOS: RINGCENTRAL_APP_SERVER_GH.replace('index', 'index-ios')
+  server: RINGCENTRAL_APP_SERVER_GH
 }
 exports.pugRedirect = {
   loader: 'pug-html-loader',

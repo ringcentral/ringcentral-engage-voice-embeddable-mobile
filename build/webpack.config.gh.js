@@ -17,7 +17,6 @@ const extractTextPlugin1 = new MiniCssExtractPlugin({
 const cp = require('./copy')
 const {
   pugIndex,
-  pugIndexIOS,
   pugRedirect
 } = require('./pug')
 const stylusSettingPlugin = new LoaderOptionsPlugin({

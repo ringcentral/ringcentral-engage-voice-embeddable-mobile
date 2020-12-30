@@ -10,11 +10,11 @@ const from2 = resolve(
 )
 const to1 = resolve(
   __dirname,
-  '../docs/android/'
+  '../docs/android/platform_www'
 )
 const to2 = resolve(
   __dirname,
-  '../docs/ios/'
+  '../docs/ios/platform_www'
 )
 const from3 = resolve(
   __dirname,

@@ -27,7 +27,7 @@
     "gh-build": "webpack --progress --config build/webpack.config.gh.js",
     "gh-clean": "rm -rf docs",
     "gh-after": "node build/gh-clean",
-    "gh": "npm run gh-clean && npm run download && npm run gh-build && npm run gh-after",
+    "gh": "npm run gh-clean && GH=true npm run download && npm run gh-build && npm run gh-after",
     "ghs": "node -r @babel/register -r dotenv/config ./build/server.js",
     "build-android": "cordova build android",
     "download": "node build/download-adapter.js"

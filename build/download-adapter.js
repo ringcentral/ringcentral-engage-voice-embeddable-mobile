@@ -9,6 +9,15 @@ const {
 } = require('shelljs')
 const { writeFileSync, readFileSync } = require('fs')
 const { resolve } = require('path')
+const {
+  GH,
+  RINGCENTRAL_APP_SERVER_GH,
+  RINGCENTRAL_APP_SERVER
+} = process.env
+
+const server = GH
+  ? RINGCENTRAL_APP_SERVER_GH
+  : RINGCENTRAL_APP_SERVER
 
 async function run () {
   rm('-rf', 'deploy/embeddable')
@@ -21,7 +30,7 @@ async function run () {
   rm('-rf', 'gh-pages.zip')
   const htmlPath = resolve(__dirname, '../deploy/embeddable/app.html')
   let html = readFileSync(htmlPath).toString()
-  html = html.replace('<script src="app.js"></script>', '<script src="/ios/platform_www/cordova.js"></script><script src="/js/work.bundle.js"></script>')
+  html = html.replace('<script src="app.js"></script>', `<script src="${server}/ios/platform_www/cordova.js"></script><script src="${server}/js/work.bundle.js"></script>`)
   writeFileSync(htmlPath, html)
 }
 

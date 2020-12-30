@@ -33,7 +33,7 @@ html
         script.type = "text/javascript";
         script.async = false;
         const prefix = window.rc.isIOS ? 'ios' : 'android'
-        script.src = `/${prefix}/platform_www/cordova.js`
+        script.src = indow.rc.server + `/${prefix}/platform_www/cordova.js`
         document.body.appendChild(script)
       } else {
         window.location.href = window.rc.server + '/embeddable/app.html' + window.rc.appConfigQuery

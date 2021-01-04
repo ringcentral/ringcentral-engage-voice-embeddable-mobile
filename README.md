@@ -18,7 +18,7 @@
 ### Prerequisites
 
 - Android: Follow the cordova guide to prepare for Android development: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
-- IOS: Follow the cordova guide to prepare for ISO development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html
+- IOS: Follow the cordova guide to prepare for ISO development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html, also requires paid apple developer account.
 - ImageMagick installed (Mac: `brew install imagemagick`, Debian/Ubuntu: `sudo apt-get install imagemagick`, Windows: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
 - cordova-splash: `npm install cordova-splash -g`
 - cordova-icon: `npm install cordova-icon -g`
@@ -52,7 +52,8 @@ npm run prepare
 # run Android app, make sure you have simulator or real android device ready
 npm run a
 
-# run IOS app, make sure you have real IOS device and paid developer ID ready
+# run IOS app, make sure you have real IOS device and paid developer ID ready,
+# and open platforms/ios with xcode and config build an debug env
 npm run i
 ```
 

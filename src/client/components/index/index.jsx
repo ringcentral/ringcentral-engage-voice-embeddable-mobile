@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { wait } from '../../app/common'
 
 export default class App extends Component {
   state = {
@@ -15,6 +16,18 @@ export default class App extends Component {
     if (!this.isIOS) {
       this.requirePermissions()
     }
+  }
+
+  waitUntilLoad = async () => {
+    let inited = false
+    while (!inited) {
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.permissions) {
+        inited = true
+      } else {
+        await wait(50)
+      }
+    }
+    return true
   }
 
   getCode = () => {
@@ -42,7 +55,8 @@ export default class App extends Component {
     }
   }
 
-  requirePermissions = () => {
+  requirePermissions = async () => {
+    await this.waitUntilLoad()
     try {
       const { permissions } = cordova.plugins
       const list = [

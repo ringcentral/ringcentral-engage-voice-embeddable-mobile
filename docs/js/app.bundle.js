@@ -91,7 +91,35 @@ var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_Reac
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
 var defineProperty = __webpack_require__(462);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+;// CONCATENATED MODULE: ./src/client/app/common.js
+function wait(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+async function waitUntilLoad() {
+  let inited = false;
+
+  while (!inited) {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.iosrtc) {
+      inited = true;
+    } else {
+      console.log('wait');
+      await wait(50);
+    }
+  }
+
+  return true;
+}
+function loadScript(url) {
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'app.js';
+  script.async = false;
+  document.body.appendChild(script);
+}
 ;// CONCATENATED MODULE: ./src/client/components/index/index.jsx
+
 
 
 class App extends external_React_namespaceObject.Component {
@@ -105,6 +133,20 @@ class App extends external_React_namespaceObject.Component {
     });
 
     defineProperty_default()(this, "isIOS", window.rc.isIOS);
+
+    defineProperty_default()(this, "waitUntilLoad", async () => {
+      let inited = false;
+
+      while (!inited) {
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.permissions) {
+          inited = true;
+        } else {
+          await wait(50);
+        }
+      }
+
+      return true;
+    });
 
     defineProperty_default()(this, "getCode", () => {
       const key = 'rc-authcode';
@@ -133,7 +175,9 @@ class App extends external_React_namespaceObject.Component {
       }
     });
 
-    defineProperty_default()(this, "requirePermissions", () => {
+    defineProperty_default()(this, "requirePermissions", async () => {
+      await this.waitUntilLoad();
+
       try {
         const {
           permissions

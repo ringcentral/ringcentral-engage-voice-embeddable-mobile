@@ -16,14 +16,6 @@ const to2 = resolve(
   __dirname,
   '../docs/ios/platform_www'
 )
-const from3 = resolve(
-  __dirname,
-  '../deploy/embeddable'
-)
-const to3 = resolve(
-  __dirname,
-  '../docs/embeddable'
-)
 
 const copy = new CopyWebpackPlugin({
   patterns: [{
@@ -33,10 +25,6 @@ const copy = new CopyWebpackPlugin({
   }, {
     from: from2,
     to: to2,
-    force: true
-  }, {
-    from: from3,
-    to: to3,
     force: true
   }]
 })

@@ -127,7 +127,6 @@ function handleEvent() {
 async function run() {
   await waitUntilLoad();
   checkPermission();
-  loadScript('https://webrtc.github.io/adapter/adapter-latest.js');
   loadScript('app.js');
   handleEvent();
 }

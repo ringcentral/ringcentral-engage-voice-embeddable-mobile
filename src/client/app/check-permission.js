@@ -2,6 +2,32 @@
 export function checkPermission () {
   // First check whether we already have permission to access the microphone.
   cordova.plugins.iosrtc.registerGlobals()
+  if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+    navigator.mediaDevices.enumerateDevicesOriginal = navigator.mediaDevices.enumerateDevices
+    navigator.mediaDevices.enumerateDevices = () => {
+      const keys = [
+        'deviceId',
+        'facing',
+        'groupId',
+        'id',
+        'kind',
+        'label'
+      ]
+      return navigator
+        .mediaDevices
+        .enumerateDevicesOriginal()
+        .then(arr => {
+          return arr.map(d => {
+            return keys.reduce((p, k) => {
+              return {
+                ...p,
+                [k]: d[k] || ''
+              }
+            }, {})
+          })
+        })
+    }
+  }
   window.audioinput.checkMicrophonePermission((hasPermission) => {
     if (hasPermission) {
       console.log('We already have permission to record.')

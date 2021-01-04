@@ -10,8 +10,6 @@
 
 - [x] Running in Android
 - [x] Running in IOS
-- [ ] Deploy server to AWS Lambda
-- [ ] Build release with CI
 - [ ] Use web worker
 - [x] Deploy to github pages
 

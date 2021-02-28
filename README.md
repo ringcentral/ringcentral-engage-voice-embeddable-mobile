@@ -21,6 +21,8 @@
 
 ### Prerequisites
 
+- Install Nodejs and npm(recommend using [nvm](https://github.com/nvm-sh/nvm)).
+- Install cordova: `npm i -g cordova`
 - Android: Follow the cordova guide to prepare for Android development: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
 - IOS: Follow the cordova guide to prepare for ISO development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html, also requires paid apple developer account.
 - ImageMagick installed (Mac: `brew install imagemagick`, Debian/Ubuntu: `sudo apt-get install imagemagick`, Windows: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))

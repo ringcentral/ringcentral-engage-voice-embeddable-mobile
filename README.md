@@ -44,7 +44,8 @@ npm run proxy
 # will get https://xxxx.ngrok.io -> localhost:6066
 # Remember https://xxxx.ngrok.io as serverUrl
 
-# create env file, then fill .env with serverUrl as RINGCENTRAL_APP_SERVER and RINGCENTRAL_CLIENT_ID and RINGCENTRAL_CLIENT_SECRET if you have
+# create env file, then fill .env with serverUrl as RINGCENTRAL_APP_SERVER and RINGCENTRAL_CLIENT_ID and RINGCENTRAL_CLIENT_SECRET with your own app in developer.ringcentral.com, must be production app and web based with account permission.
+# Set https://xxxx.ngrok.io/rc-auth as callback url in app setting
 cp sample.env .env
 
 # start server

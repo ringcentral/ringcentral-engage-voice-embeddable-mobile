@@ -28,6 +28,7 @@
 - ImageMagick installed (Mac: `brew install imagemagick`, Debian/Ubuntu: `sudo apt-get install imagemagick`, Windows: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
 - cordova-splash: `npm install cordova-splash -g`
 - cordova-icon: `npm install cordova-icon -g`
+- If you using emulator, you may need open the emulator first
 
 ```bash
 # clone project

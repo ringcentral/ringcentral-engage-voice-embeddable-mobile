@@ -12,9 +12,9 @@ const {
 export default async (req, res) => {
   const { code, state } = req.query
   const r = state.includes('ios') ? '/ios-device' : APP_HOME
-  const redirect = RINGCENTRAL_APP_SERVER + r
+  const server = RINGCENTRAL_APP_SERVER + r
   const data = {
-    redirect,
+    server,
     code
   }
   data._global = copy(data)

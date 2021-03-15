@@ -29,6 +29,8 @@
 - cordova-splash: `npm install cordova-splash -g`
 - cordova-icon: `npm install cordova-icon -g`
 - If you using emulator, you may need open the emulator first
+- A developer account in developer.ringcentral.com(free to register)
+- Create an app in developer.ringcentral.com, Create a RingCentral app with platform type - "Browser Based", and add permissions `Edit Message`, `Edit Presence`, `Internal Messages`, `Read Accounts`, `Read Call Log`, `Read Contacts`, `Read Messages`, `Read Presence`, `RingOut`, `SMS`, `Call Control` and `VoIP Calling` to your app.
 
 ```bash
 # clone project

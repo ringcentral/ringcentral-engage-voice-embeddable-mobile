@@ -36,7 +36,11 @@
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "Drake Zhao <drake.zhao@ringcentral.com> (https://github.com/zxdong262)",
+  "author": {
+    "name": "Drake Zhao",
+    "email": "drake.zhao@ringcentral.com",
+    "url": "https://github.com/zxdong262"
+  },
   "license": "MIT",
   "devDependencies": {
     "@ant-design/icons": "^4.3.0",

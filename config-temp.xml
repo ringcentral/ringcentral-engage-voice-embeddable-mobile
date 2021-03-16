@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ringcentral.appName" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>{appName}</name>
+    <description>
+        {description}
+    </description>
+    <author email="{authorEmail}" href="{authorUrl}">
+        {authorName}
+    </author>
+    <content src="{home}" />
+    <preference name="loadUrlTimeoutValue" value="600000" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <platform name="android">
+        <icon src="src/app/icon.png" />
+        <!-- <plugin name="cordova-plugin-media-capture" spec="*">
+            <variable name="CAMERA_USAGE_DESCRIPTION" value="To take videos"/>
+            <variable name="MICROPHONE_USAGE_DESCRIPTION" value="To record voice while taking videos"/>
+            <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To provide photo browsing."/>
+        </plugin> -->
+        <plugin name="cordova-plugin-audioinput" spec="*"/>
+        <!-- <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/uses-permission" xmlns:android="http://schemas.android.com/apk/res/android">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.NETWORK_ACCESS" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        </edit-config> -->
+    </platform>
+    <platform name="ios">
+        <plugin name="cordova-plugin-audioinput" spec="*"/>
+        <plugin name="Capture" value="CDVCapture" />
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+          <array>
+            <string>audio</string>
+          </array>
+        </config-file>
+    </platform>
+</widget>

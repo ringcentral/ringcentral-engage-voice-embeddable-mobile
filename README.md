@@ -38,7 +38,7 @@ git clone git@github.com:ringcentral/ringcentral-engage-voice-embeddable-mobile.
 cd ringcentral-engage-voice-embeddable-mobile
 
 # install dependencies
-npm i
+npm run pre && npm i
 
 # start proxy server
 npm run proxy

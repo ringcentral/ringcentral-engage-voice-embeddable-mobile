@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "pre": "cp config-temp.xml config.xml",
-    "prepare": "cordova prepare",
+    "prepare": "rm -rf platforms plugins && cordova prepare && npm run download",
     "icon": "cordova-icon --config=config.xml --icon=src/app/icon.png",
     "splash": "cordova-splash --config=config.xml --splash=src/app/splash.png",
     "i": "cordova run ios",

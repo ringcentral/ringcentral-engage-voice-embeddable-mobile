@@ -1,6 +1,6 @@
-# RingCentral Engage voice embeddable mobile
+# Engage Voice Embeddable for Mobile
 
-**Experimental** Android/IOS apps based on [ringcentral-engage-voice-embeddable](https://github.com/ringcentral/engage-voice-embeddable) and cordova
+**Experimental** Develop Android/IOS apps based on [ringcentral-engage-voice-embeddable](https://github.com/ringcentral/engage-voice-embeddable) and Cordova
 
 ## Demo video
 
@@ -24,7 +24,7 @@
 - Install Nodejs and npm(recommend using [nvm](https://github.com/nvm-sh/nvm)).
 - Install cordova: `npm i -g cordova`
 - Android: Follow the cordova guide to prepare for Android development: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
-- IOS: Follow the cordova guide to prepare for ISO development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html, also requires paid apple developer account.
+- iOS: Follow the cordova guide to prepare for iOS development: https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html, also requires paid Apple developer account.
 - ImageMagick installed (Mac: `brew install imagemagick`, Debian/Ubuntu: `sudo apt-get install imagemagick`, Windows: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
 - cordova-splash: `npm install cordova-splash -g`
 - cordova-icon: `npm install cordova-icon -g`
